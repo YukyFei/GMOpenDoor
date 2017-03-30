@@ -49,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		020196F41E1B88E000D2AAFE /* libIQKeyboardManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIQKeyboardManager.a; path = "../../../Library/Developer/Xcode/DerivedData/锁屏状态-awxunwfjsboinqdgdmfrpkrmrfiv/Build/Products/Debug-iphoneos/IQKeyboardManager/libIQKeyboardManager.a"; sourceTree = "<group>"; };
+		020486851E56CD0C00B6FABE /* MacroDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDefinition.h; sourceTree = "<group>"; };
 		023F60FB1E2DF42600667E8C /* MsgPlaySound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgPlaySound.h; sourceTree = "<group>"; };
 		023F60FC1E2DF42600667E8C /* MsgPlaySound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgPlaySound.m; sourceTree = "<group>"; };
 		023F8D9E1DD2C319002656D8 /* OpenDoorTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenDoorTool.h; sourceTree = "<group>"; };
@@ -149,12 +150,13 @@
 			children = (
 				02DAB7921DEC6A8C001D81ED /* SVProgressHUD */,
 				02939B9F1DC09974000C3CE0 /* libBabyBluetooth.a */,
+				025390D51D6B159E00DDE244 /* AppDelegate.h */,
+				025390D61D6B159E00DDE244 /* AppDelegate.m */,
+				020486851E56CD0C00B6FABE /* MacroDefinition.h */,
 				023F8D9E1DD2C319002656D8 /* OpenDoorTool.h */,
 				023F8D9F1DD2C319002656D8 /* OpenDoorTool.m */,
 				02CA38CE1E1502F800A94D85 /* AccessDoor.h */,
 				02CA38CF1E1502F800A94D85 /* AccessDoor.m */,
-				025390D51D6B159E00DDE244 /* AppDelegate.h */,
-				025390D61D6B159E00DDE244 /* AppDelegate.m */,
 				023F60FB1E2DF42600667E8C /* MsgPlaySound.h */,
 				023F60FC1E2DF42600667E8C /* MsgPlaySound.m */,
 				025390D81D6B159E00DDE244 /* ViewController.h */,
@@ -306,7 +308,7 @@
 				TargetAttributes = {
 					025390CE1D6B159E00DDE244 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = S882P645WS;
+						DevelopmentTeam = 9HWN6UL8PS;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -592,9 +594,9 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/锁屏状态",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = opendoor.dms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.opendoor;
 				PRODUCT_NAME = CloseScreen;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f87d8eaa-1a2a-4d53-852b-1c59d5683dec";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -615,9 +617,9 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/锁屏状态",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = opendoor.dms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.opendoor;
 				PRODUCT_NAME = CloseScreen;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f87d8eaa-1a2a-4d53-852b-1c59d5683dec";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

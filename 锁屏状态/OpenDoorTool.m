@@ -63,7 +63,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 {
     if (!_beaconMac_BTMac) {
         
-        _beaconMac_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMacAddress1,BTMacAddress1, BeaconMacAddress2,nil];
+        _beaconMac_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMacAddress1_1,BTMacAddress1, BeaconMacAddress1_2,BTMacAddress2,BeaconMacAddress2_1,BTMacAddress2, BeaconMacAddress2_2,BTMacAddress3,BeaconMacAddress3_1,BTMacAddress3, BeaconMacAddress3_2, BTMacAddress4,BeaconMacAddress4_1,BTMacAddress4, BeaconMacAddress4_2,nil];
     }
     return _beaconMac_BTMac;
 }
@@ -110,7 +110,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 {
     if (!_minor_BTMac) {
         
-        _minor_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMinor_1,BTMacAddress1, BeaconMinor_2,nil];
+        _minor_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMinor_1,BTMacAddress2,BeaconMinor_2,BTMacAddress3,BeaconMinor_3,BTMacAddress4,BeaconMinor_4,nil]; //BTMacAddress1, BeaconMinor_2,
     }
     return _minor_BTMac;
 }
@@ -1229,7 +1229,7 @@ static bool setScreenStateCb()
                 retStr = [NSString stringWithFormat:@"%@:%@",retStr,tmpStr];
             }
             beaconMacAddress = retStr;
-//            NSLog(@"扫描到的beaconMacAddress = %@",beaconMacAddress);
+            NSLog(@"扫描到的beaconMacAddress = %@",beaconMacAddress);
         }
         
     }
@@ -1348,7 +1348,7 @@ static bool setScreenStateCb()
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         
-        standardRssi = -60;
+        standardRssi = -55;
         strongRssi = -50;
     }
     
@@ -1398,7 +1398,6 @@ static bool setScreenStateCb()
 }
 
 
-
 #pragma mark 拼包---开门数据
 - (NSData *)setPackageWithCardNum:(int)cardNum
 {
@@ -1407,13 +1406,13 @@ static bool setScreenStateCb()
     int a = cardNum; //卡号
     
     //NSLog(@"卡号：%02x",a);
-    //                Byte contentData[4] = {0}; //有效数据
-    //
-    //                Byte * tmp = (Byte *)&a;
-    //                contentData[0] = *tmp;
-    //                contentData[1] = *(tmp+1);
-    //                contentData[2] = *(tmp+2);
-    //                contentData[3] = *(tmp+3);
+    Byte contentData[4] = {0}; //有效数据
+    
+    Byte * tmp = (Byte *)&a;
+    contentData[3] = *tmp;
+    contentData[2] = *(tmp+1);
+    contentData[1] = *(tmp+2);
+    contentData[0] = *(tmp+3);
     
     Byte openData[9] = {0}; //整个包
     
@@ -1422,8 +1421,8 @@ static bool setScreenStateCb()
     Byte tailData[] = {0xfe,0x3a}; // 包尾
     
     memcpy(openData, headData, sizeof(headData));
-    memcpy(openData+sizeof(headData), &a, sizeof(a));
-    memcpy(openData+sizeof(headData)+sizeof(a), tailData, sizeof(tailData));
+    memcpy(openData+sizeof(headData), contentData, sizeof(contentData));
+    memcpy(openData+sizeof(headData)+sizeof(contentData), tailData, sizeof(tailData));
     
     //计算校验位
     Byte checkData = 0x00;
@@ -1445,6 +1444,8 @@ static bool setScreenStateCb()
     NSData * openDoorData = [NSData dataWithBytes:openData length:sizeof(openData)];
     return openDoorData;
 }
+
+
 
 /**
  功能：判断扫描到的蓝牙mac是否是已知的mac
